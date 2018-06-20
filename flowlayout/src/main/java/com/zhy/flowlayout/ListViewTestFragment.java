@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.zhy.base.adapter.ViewHolder;
 import com.zhy.base.adapter.abslistview.CommonAdapter;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -17,6 +19,7 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -74,7 +77,17 @@ public class ListViewTestFragment extends Fragment
                     @Override
                     public void onSelected(Set<Integer> selectPosSet)
                     {
+
+
                         selectedMap.put(viewHolder.getItemPosition(), selectPosSet);
+                    }
+                });
+                tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                    @Override
+                    public boolean onTagClick(View view, int position, FlowLayout parent) {
+                        Toast.makeText(mContext, "你点击了："+position, Toast.LENGTH_SHORT).show();
+
+                        return false;
                     }
                 });
             }
